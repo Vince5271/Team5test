@@ -3,67 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All About Dogs 🐾</title>
+    <title>Dog World 🐾</title>
     <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #2d3748;
+            --card-bg: #ffffff;
+            --accent-color: #ff9f43;
+        }
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #f7fafc;
+            --card-bg: #2d3748;
+            --accent-color: #f6ad55;
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f7f9fa;
-            color: #333;
-            text-align: center;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
         header {
-            background-color: #ff9f43;
+            background: linear-gradient(135deg, #ff9f43, #ff6b6b);
             color: white;
-            padding: 2rem;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
         }
-        h1 { margin: 0; font-size: 2.5rem; }
+        .theme-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 900px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 1.5rem;
         }
-        .dog-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
-        footer {
-            background: #2f3542;
+        .card:hover { transform: translateY(-5px); }
+        .interactive-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .like-btn {
+            background-color: #ff6b6b;
             color: white;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Welcome to the World of Manimala Furkids 🐾</h1>
-        <p>Your ultimate guide to man's best friend.</p>
+        <button class="theme-btn" onclick="toggleTheme()">🌓 Toggle Mode</button>
+        <h1>Dog World Explorer</h1>
+        <p>Discover dynamic features built with HTML, CSS, and JS!</p>
     </header>
 
-    <div class="container">
-        <div class="dog-card">
-            <h2>Why We Love Dogs</h2>
-            <p>Dogs are loyal, affectionate, and bring immense joy to our lives. Whether they are working partners or family companions, they truly deserve the title of best friend.</p>
-            <p>They are the ones who understand us without judgment and offer unwavering loyalty through all of life's adventures.</p>
+    <main class="container">
+        <div class="card">
+            <h3>🐕 Golden Retriever</h3>
+            <p>Intelligent, friendly, and devoted. They excel at retrieving game, tracking, and serving as gentle family companions.</p>
         </div>
+        <div class="card">
+            <h3>🦊 Shiba Inu</h3>
+            <p>Spirited, bold, and fiercely independent. An ancient Japanese breed known for its fox-like look and clean habits.</p>
+        </div>
+    </main>
 
-        <div class="dog-card">
-            <h2>Dogs that we have.</h2>
-            <p>Sandy boiiii, Rockyboiii, Luna Gurlll, Sophie Gurlllss, Bheem Boiii, Ponni also consider a dog :D</p>
-        </div>
+    <div class="interactive-section">
+        <button class="like-btn" onclick="addLike()">❤️ Show Some Love: <span id="like-count">0</span> Likes</button>
     </div>
 
-    <footer>
-        <p>Made with ❤️ for Dogs | Hosted on GitHub Pages</p>
-    </footer>
+    <script>
+        // Simple JavaScript logic for custom behavior
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+        }
 
+        let count = 0;
+        function addLike() {
+            count++;
+            document.getElementById('like-count').innerText = count;
+        }
+    </script>
 </body>
 </html>
